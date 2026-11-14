@@ -1,21 +1,22 @@
-import 'package:flutter/services.dart';
+package com.example.talk_app
 
-class AccessibilityService {
-  static final MethodChannel _channel = MethodChannel('com.example.talkapp/accessibility');
+import android.accessibilityservice.AccessibilityService
+import android.content.Intent
+import android.view.accessibility.AccessibilityEvent
 
-  static Future<void> performClick() async {
-    try {
-      await _channel.invokeMethod('performClick');
-    } on PlatformException catch (e) {
-      print("Failed to perform click: '${e.message}'.");
+class TalkAccessibilityService : AccessibilityService() {
+    companion object {
+        var instance: TalkAccessibilityService? = null
     }
-  }
 
-  static Future<void> performGlobalAction(int action) async {
-    try {
-      await _channel.invokeMethod('performGlobalAction', {'action': action});
-    } on PlatformException catch (e) {
-      print("Failed to perform action: '${e.message}'.");
+    override fun onServiceConnected() { instance = this }
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {}
+    override fun onInterrupt() {}
+    override fun onUnbind(intent: Intent?): Boolean {
+        instance = null
+        return super.onUnbind(intent)
     }
+
+    fun goHome() = performGlobalAction(GLOBAL_ACTION_HOME)
+    fun goBack() = performGlobalAction(GLOBAL_ACTION_BACK)
   }
-}
