@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'accessibility_service.dart';
 void main() {
   runApp(TalkApp());
 }
@@ -9,9 +9,7 @@ class TalkApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Welcome to TalkApp'),
-        ),
+      body: ElevatedButton(onPressed: () => AccessibilityService().performClick(), child: const Text('Perform Click')),.
       ),
     );
   }
