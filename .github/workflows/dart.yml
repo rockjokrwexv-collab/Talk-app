@@ -20,4 +20,4 @@ channel: 'stable'
 - uses: actions/upload-artifact@v3
 with:
 name: app-release
-path: build/app/outputs/flutter-apk/app-release.ap
+path: build/app/outputs/flutter-apk/app-release.apk
