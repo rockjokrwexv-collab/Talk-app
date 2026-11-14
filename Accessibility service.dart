@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class AccessibilityService {
-  static const MethodChannel _channel = MethodChannel('com.example.talkapp/accessibility');
+  static final MethodChannel _channel = MethodChannel('com.example.talkapp/accessibility');
 
   static Future<void> performClick() async {
     try {
